@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    
     <title>Code Quiz</title>
 </head>
 <body>
@@ -15,8 +16,8 @@
     View High Scores
   </a>
   </div>
-  <div class="counter">
-  Time: <span class="time-remaining">0</span>
+  <div>
+  Time: <span id="time-remaining">100</span>
     </div>
  </div>
 
@@ -26,10 +27,10 @@
   <p>Try to answer the following code-related questions within the time limit.
     Keep in mind that incorrect answers will penalize your score/time by ten seconds!
   </p>
-  <button type="button" class="start-button">Start Game!</button>
+  <button type="button" class="start-button" id="save">Start Game!</button>
 </div>
 </main>
     
-
+<script src="assets/js/script.js"></script>
 </body>
 </html>
