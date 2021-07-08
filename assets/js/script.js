@@ -3,7 +3,7 @@ var counter = document.querySelector("#time-remaining").textContent;
 var countdown;
 
 buttonEl.addEventListener("click", function () {
-  alert("button clicked");
+  questionOne();
   var countdown = setInterval(function () {
     counter--;
     if (counter < 0) {
@@ -15,6 +15,16 @@ buttonEl.addEventListener("click", function () {
     countdownDisplay.textContent = counter;
     countdownDisplay.className = "top";
     countTime.appendChild(countdownDisplay);
-    document.getElementById("time-remaining").appendChild(countdownDisplay);
+    document.getElementById("time-remaining").innerHTML = counter;
   }, 1000);
 });
+
+var questionOne = function () {
+  var q1Page = document.querySelector("#prequiz");
+  var q1Q = document.createElement("h2");
+  q1Q.textContent =
+    "What programing language represents the skin of a webpage?";
+  q1Q.className = "start-page";
+  q1Page.appendChild(q1Q);
+  document.getElementById("prequiz").innerHTML = q1Page;
+};
