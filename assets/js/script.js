@@ -1,22 +1,20 @@
 var buttonEl = document.querySelector("#save");
-var counter = 100;
+var counter = document.querySelector("#time-remaining").textContent;
 var countdown;
-
-var countdownFunc = function () {
-  console.log(counter);
-  counter--;
-  if (counter < 0) {
-    alert("You Lose! Good day sir...I said GOOD DAY!");
-    clearInterval(countdown);
-  }
-};
 
 buttonEl.addEventListener("click", function () {
   alert("button clicked");
-  var countdown = setInterval(countdownFunc, 1000);
-  var countTime = document.querySelector("#time-remaining");
-  var countdownDisplay = document.createElement("span");
-  countdownDisplay.textContent = counter;
-  countdownDisplay.className = "top";
-  countTime.innerHTML = countdownDisplay;
+  var countdown = setInterval(function () {
+    counter--;
+    if (counter < 0) {
+      alert("Game Over");
+      clearInterval(countdown);
+    }
+    var countTime = document.querySelector("#time-remaining");
+    var countdownDisplay = document.createElement("span");
+    countdownDisplay.textContent = counter;
+    countdownDisplay.className = "top";
+    countTime.appendChild(countdownDisplay);
+    document.getElementById("time-remaining").appendChild(countdownDisplay);
+  }, 1000);
 });
