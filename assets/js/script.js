@@ -46,9 +46,9 @@ buttonEl.addEventListener("click", function () {
   startQuestions();
   var countdown = setInterval(function () {
     counter--;
-    if (counter < 0) {
-      alert("Game Over");
+    if (counter < 1) {
       clearInterval(countdown);
+      alert("Game Over. Refresh to play again.");
     }
     var countTime = document.querySelector("#time-remaining");
     var countdownDisplay = document.createElement("span");
@@ -79,16 +79,34 @@ var choiceClick = function () {
   // if wrong
   if (this.value !== questions[currentQuestionIndex].answer) {
     counter -= 15;
-    checkEl.textContent = "wrong";
+    checkEl.textContent = "WRONG!";
+    checkEl.className = "wrongStyle";
     //if right
   } else {
-    checkEl.textContent = "correct";
+    checkEl.textContent = "CORRECT!";
+    checkEl.className = "correctStyle";
   }
   currentQuestionIndex++;
 
   if (currentQuestionIndex === questions.length) {
-    alert("GAME OVER");
+    endGame();
   } else {
     startQuestions();
   }
+};
+
+var endGame = function () {
+  clearInterval(countdown);
+  questionsEl.setAttribute("class", "hide");
+  var endGameScreen = document.querySelector("#end-screen");
+  var endTitle = document.createElement("h2");
+  endTitle.textContent = "your score is:";
+  endTitle.className = "end-screen";
+  endGameScreen.appendChild(endTitle);
+  var endScore = document.querySelector("#end-score");
+  endScore.className = "end-score";
+  endScore.textContent = counter;
+  endGameScreen.appendChild(endScore);
+  var enterName = document.querySelector("#usrform");
+  enterName.setAttribute("class", "end");
 };

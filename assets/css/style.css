@@ -42,3 +42,30 @@
     margin: 0 auto;
     display: block;
 }
+.wrongStyle {
+    font-size: xx-large;
+    color: red;
+    text-align: center;
+}
+
+.correctStyle {
+    font-size: xx-large;
+    color: green;
+    text-align: center;
+}
+.end-screen {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.end-score {
+    text-align: center;
+    font-size: xx-large;
+    font-family: Arial, Helvetica, sans-serif;
+    color:royalblue;
+
+}
+.end {
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
