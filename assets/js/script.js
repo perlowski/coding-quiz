@@ -49,8 +49,7 @@ buttonEl.addEventListener("click", function () {
     if (counter < 1) {
       clearInterval(countdown);
       alert("Game Over. Refresh to play again.");
-    }
-    var countTime = document.querySelector("#time-remaining");
+    } else var countTime = document.querySelector("#time-remaining");
     var countdownDisplay = document.createElement("span");
     countdownDisplay.textContent = counter;
     countdownDisplay.className = "top";
