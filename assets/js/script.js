@@ -1,3 +1,15 @@
+/* 
+  //1. click the start button
+    -timer starts 
+    -presented with a question
+      -when I answerthe question
+        -I am presented with another question
+        -I answer a question incorrectly
+          -time is subtracted from the clock
+        - all questions are answered or the timer reaches 0
+        -the game is over
+              - save my initials and score */
+
 var questions = [
   {
     title: "Commonly used data types do NOT include:",
@@ -37,24 +49,25 @@ var questionsEl = document.querySelector("#qs");
 var choicesEl = document.querySelector("#choices");
 var checkEl = document.querySelector("#check");
 var buttonEl = document.querySelector("#save");
-var counter = document.querySelector("#time-remaining").textContent;
+var counterEl = document.querySelector("#time-remaining");
+var endGameScreen = document.querySelector("#end-screen");
+var endScore = document.querySelector("#end-score");
+var enterName = document.querySelector("#usrform");
+var timer = 99;
 var countdown;
 
 buttonEl.addEventListener("click", function () {
   var startScreenEl = document.getElementById("prequiz");
   startScreenEl.setAttribute("class", "hide");
   startQuestions();
-  var countdown = setInterval(function () {
-    counter--;
-    if (counter < 1) {
-      clearInterval(countdown);
+  countdown = setInterval(function () {
+    if (timer < 1) {
       alert("Game Over. Refresh to play again.");
-    } else var countTime = document.querySelector("#time-remaining");
-    var countdownDisplay = document.createElement("span");
-    countdownDisplay.textContent = counter;
-    countdownDisplay.className = "top";
-    countTime.appendChild(countdownDisplay);
-    document.getElementById("time-remaining").innerHTML = counter;
+    } else {
+      counterEl.textContent = timer;
+      //countdownDisplay.className = "top";
+    }
+    timer--;
   }, 1000);
 });
 
@@ -70,6 +83,7 @@ var startQuestions = function () {
     choiceNode.setAttribute("value", choice);
     choiceNode.textContent = choice;
     choiceNode.onclick = choiceClick;
+    //choiceNode.addEventListener('click', choiceClick)
     choicesEl.appendChild(choiceNode);
   });
 };
@@ -77,7 +91,7 @@ var startQuestions = function () {
 var choiceClick = function () {
   // if wrong
   if (this.value !== questions[currentQuestionIndex].answer) {
-    counter -= 15;
+    timer -= 15;
     checkEl.textContent = "WRONG!";
     checkEl.className = "wrongStyle";
     //if right
@@ -95,17 +109,21 @@ var choiceClick = function () {
 };
 
 var endGame = function () {
-  clearInterval(countdown);
-  questionsEl.setAttribute("class", "hide");
-  var endGameScreen = document.querySelector("#end-screen");
+  questionsEl.classList.toggle("hide");
+  var clearTimer = document.querySelector("#time");
+  clearTimer.classList.toggle("hide");
+  // questionsEl.setAttribute("class", "hide");]
+  //endGameScreen
+  //endScore
+  //enterName
+  endScore.textContent = timer;
   var endTitle = document.createElement("h2");
   endTitle.textContent = "your score is:";
   endTitle.className = "end-screen";
   endGameScreen.appendChild(endTitle);
-  var endScore = document.querySelector("#end-score");
   endScore.className = "end-score";
-  endScore.textContent = counter;
+
   endGameScreen.appendChild(endScore);
-  var enterName = document.querySelector("#usrform");
   enterName.setAttribute("class", "end");
+  clearInterval(countdown);
 };
