@@ -54,7 +54,7 @@ var endGameScreen = document.querySelector("#end-screen");
 var endScore = document.querySelector("#end-score");
 var enterName = document.querySelector("#usrform");
 var submitEl = document.querySelector("#submitBtn");
-var enterInitials = document.querySelector("#input[name='usrname']").value;
+
 var timer = 99;
 var countdown;
 
@@ -129,8 +129,16 @@ var endGame = function () {
   clearInterval(countdown);
 };
 
-submitEl.addEventListener("click", function () {
-  event.preventdefault();
-  console.log(enterInitials);
-  alert(enterInitials);
+submitEl.addEventListener("click", function (event) {
+  var enterInitials = document.querySelector("#input[name='usrname']").value;
+  event.preventDefault();
+  var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+  var scoreDisp = document.createElement("li");
+  var userScore = timer;
+  var scoreObj = {};
+  scoreObj[enterInitials] = userScore;
+  highScores.push(scoreObj);
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+
+  window.location.href = "scores.html";
 });

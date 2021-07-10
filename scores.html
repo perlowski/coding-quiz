@@ -15,6 +15,14 @@
     </ul>
 </header>
 
-    <script src="assets/js/script.js"></script>
+    
+    <script>
+        var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+         // var savedScores = document.querySelector("#saved-scores");
+        // savedScores.appendChild(highScores);
+        
+        console.log(highScores)
+    </script>
+
 </body>
 </html>
