@@ -53,6 +53,8 @@ var counterEl = document.querySelector("#time-remaining");
 var endGameScreen = document.querySelector("#end-screen");
 var endScore = document.querySelector("#end-score");
 var enterName = document.querySelector("#usrform");
+var submitEl = document.querySelector("#submitBtn");
+var enterInitials = document.querySelector("input[name='usrname']").value;
 var timer = 99;
 var countdown;
 
@@ -122,8 +124,12 @@ var endGame = function () {
   endTitle.className = "end-screen";
   endGameScreen.appendChild(endTitle);
   endScore.className = "end-score";
-
   endGameScreen.appendChild(endScore);
   enterName.setAttribute("class", "end");
   clearInterval(countdown);
 };
+
+submitEl.addEventListener("click", function () {
+  console.log(enterInitials);
+  alert(enterInitials);
+});
