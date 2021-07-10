@@ -54,7 +54,7 @@ var endGameScreen = document.querySelector("#end-screen");
 var endScore = document.querySelector("#end-score");
 var enterName = document.querySelector("#usrform");
 var submitEl = document.querySelector("#submitBtn");
-var enterInitials = document.querySelector("input[name='usrname']").value;
+var enterInitials = document.querySelector("#input[name='usrname']").value;
 var timer = 99;
 var countdown;
 
@@ -130,6 +130,7 @@ var endGame = function () {
 };
 
 submitEl.addEventListener("click", function () {
+  event.preventdefault();
   console.log(enterInitials);
   alert(enterInitials);
 });
